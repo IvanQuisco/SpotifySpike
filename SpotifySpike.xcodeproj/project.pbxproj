@@ -15,6 +15,7 @@
 		2D7E5E0527557ACA002FF3B7 /* SpotifySpikeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7E5E0427557ACA002FF3B7 /* SpotifySpikeUITests.swift */; };
 		2D7E5E0727557ACA002FF3B7 /* SpotifySpikeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7E5E0627557ACA002FF3B7 /* SpotifySpikeUITestsLaunchTests.swift */; };
 		2DC8CB302755A41C00D120FA /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DC8CB2F2755A41C00D120FA /* SpotifyiOS.framework */; };
+		2DC8CB322755A4CD00D120FA /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC8CB312755A4CD00D120FA /* Application.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		2DC8CB292755964C00D120FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2DC8CB2C275598BA00D120FA /* SpotifySpike-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SpotifySpike-Bridging-Header.h"; sourceTree = "<group>"; };
 		2DC8CB2F2755A41C00D120FA /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
+		2DC8CB312755A4CD00D120FA /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				2D7E5DEB27557AC9002FF3B7 /* ContentView.swift */,
 				2D7E5DED27557ACA002FF3B7 /* Assets.xcassets */,
 				2D7E5DEF27557ACA002FF3B7 /* Preview Content */,
+				2DC8CB312755A4CD00D120FA /* Application.swift */,
 			);
 			path = SpotifySpike;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DC8CB322755A4CD00D120FA /* Application.swift in Sources */,
 				2D7E5DEC27557AC9002FF3B7 /* ContentView.swift in Sources */,
 				2D7E5DEA27557AC9002FF3B7 /* SpotifySpikeApp.swift in Sources */,
 			);
