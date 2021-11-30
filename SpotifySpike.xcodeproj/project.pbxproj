@@ -14,6 +14,7 @@
 		2D7E5DFB27557ACA002FF3B7 /* SpotifySpikeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7E5DFA27557ACA002FF3B7 /* SpotifySpikeTests.swift */; };
 		2D7E5E0527557ACA002FF3B7 /* SpotifySpikeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7E5E0427557ACA002FF3B7 /* SpotifySpikeUITests.swift */; };
 		2D7E5E0727557ACA002FF3B7 /* SpotifySpikeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7E5E0627557ACA002FF3B7 /* SpotifySpikeUITestsLaunchTests.swift */; };
+		2DC8CB302755A41C00D120FA /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DC8CB2F2755A41C00D120FA /* SpotifyiOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		2D7E5E0627557ACA002FF3B7 /* SpotifySpikeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifySpikeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2DC8CB292755964C00D120FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2DC8CB2C275598BA00D120FA /* SpotifySpike-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SpotifySpike-Bridging-Header.h"; sourceTree = "<group>"; };
+		2DC8CB2F2755A41C00D120FA /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DC8CB302755A41C00D120FA /* SpotifyiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +79,7 @@
 		2D7E5DDD27557AC9002FF3B7 = {
 			isa = PBXGroup;
 			children = (
+				2DC8CB2F2755A41C00D120FA /* SpotifyiOS.framework */,
 				2DC8CB2C275598BA00D120FA /* SpotifySpike-Bridging-Header.h */,
 				2D7E5DE827557AC9002FF3B7 /* SpotifySpike */,
 				2D7E5DF927557ACA002FF3B7 /* SpotifySpikeTests */,
