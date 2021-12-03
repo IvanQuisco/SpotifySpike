@@ -10,29 +10,22 @@ import SwiftUI
 @main
 struct SpotifySpikeApp: App {
     @Environment(\.scenePhase) private var scenePhase
-    let app = Application()
+    let app = Application.live
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .onAppear {
-                    app.connect()
-                }
-                .onOpenURL { url in
-                    app.openURL(url: url)
-                }
+                .onAppear { app.onAppear() }
+                .onOpenURL { app.onOpenURL(url: $0) }
         }
         .onChange(of: scenePhase) { phase in
             switch phase {
             case .background:
                 app.willResignActive()
-            case .inactive:
-                print("Inactive")
             case .active:
-                print("Active")
                 app.didBecomeActive()
-            @unknown default:
-                print("Other")
+            default:
+                break
             }
         }
     }

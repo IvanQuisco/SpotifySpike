@@ -7,79 +7,43 @@
 
 import Foundation
 
-class Application: NSObject, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate {
-    let SpotifyClientID = "28f4cedefcb34df4bdde7a12e23c2b5e"
-    let SpotifyRedirectURL = URL(string: "spotify-spike://spotify-login-callback")!
-    var accessToken: String!
-    var playURI = ""
+protocol LifeCycle {
+    func onAppear()
+    func didBecomeActive()
+    func willResignActive()
+    func onOpenURL(url: URL)
+}
 
-    lazy var configuration = SPTConfiguration(
-      clientID: SpotifyClientID,
-      redirectURL: SpotifyRedirectURL
-    )
+class Application: NSObject {
+    let spotifyManager: SpotifyManager
     
-    lazy var appRemote: SPTAppRemote = {
-      let appRemote = SPTAppRemote(configuration: self.configuration, logLevel: .debug)
-      appRemote.connectionParameters.accessToken = self.accessToken
-      appRemote.delegate = self
-      return appRemote
-    }()
-    
-    func openURL (url: URL) {
-        let parameters = appRemote.authorizationParameters(from: url);
-    
-        if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
-            appRemote.connectionParameters.accessToken = access_token
-            self.accessToken = access_token
-        } else if let error_description = parameters?[SPTAppRemoteErrorDescriptionKey] {
-            print(error_description)
-        }
+    required init(spotifyManager: SpotifyManager) {
+        self.spotifyManager = spotifyManager
+        super.init()
     }
     
-    func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) {
-      print("disconnected")
-    }
-    func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: Error?) {
-      print("failed")
-    }
+    static var live: Self { .init(spotifyManager: .live) }
+}
 
-    func connect() {
-        appRemote.authorizeAndPlayURI(
-            "",
-            asRadio: false,
-            additionalScopes: [
-                "playlist-read-private",
-                "user-read-private",
-                "user-read-email",
-                "playlist-modify-public",
-                "playlist-modify-private"
-            ]
-        )
+extension Application: LifeCycle {
+    func onAppear() {
+        self.spotifyManager.connect()
     }
     
-    func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
-      // Connection was successful, you can begin issuing commands
-      self.appRemote.playerAPI?.delegate = self
-      self.appRemote.playerAPI?.subscribe(toPlayerState: { (result, error) in
-        if let error = error {
-          debugPrint(error.localizedDescription)
-        }
-      })
-    }
-    
-    func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
-      debugPrint("Track name: %@", playerState.track.name)
+    func onOpenURL(url: URL) {
+        self.spotifyManager.openURL(url: url)
     }
     
     func willResignActive() {
-      if self.appRemote.isConnected {
-        self.appRemote.disconnect()
-      }
+        if self.spotifyManager.appRemote.isConnected {
+            self.spotifyManager.appRemote.disconnect()
+        }
     }
     
     func didBecomeActive() {
-      if let _ = self.appRemote.connectionParameters.accessToken {
-        self.appRemote.connect()
-      }
+        let isValidToken = self.spotifyManager.appRemote.connectionParameters.accessToken != nil
+        if isValidToken {
+            self.spotifyManager.appRemote.connect()
+        }
     }
 }
